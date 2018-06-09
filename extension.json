@@ -1,0 +1,52 @@
+{
+	"name": "MW_EXT_InfoBox",
+	"version": "1.0.0",
+	"author": [
+		"[https://kitsune.solar/ Kitsune Solar]",
+		"[https://metastore.pro/ METASTORE]",
+		"..."
+	],
+	"url": "https://metastore.pro/",
+	"descriptionmsg": "mw-ext-infobox-desc",
+	"license-name": "[https://www.gnu.org/licenses/gpl-3.0.txt GPL-3.0]",
+	"type": "parserhook",
+	"require": {
+		"MediaWiki": ">= 1.30.0"
+	},
+	"AutoloadClasses": {
+		"MW_EXT_InfoBox": "MW_EXT_InfoBox.class.php"
+	},
+	"Hooks": {
+		"ParserFirstCallInit": [
+			"MW_EXT_InfoBox::onParserFirstCallInit"
+		],
+		"BeforePageDisplay": [
+			"MW_EXT_InfoBox::onBeforePageDisplay"
+		]
+	},
+	"ExtensionMessagesFiles": {
+		"MW_EXT_InfoBoxMagic": "MW_EXT_InfoBox.i18n.magic.php"
+	},
+	"MessagesDirs": {
+		"MW_EXT_InfoBox": [
+			"i18n"
+		]
+	},
+	"ResourceModules": {
+		"ext.mw.infobox.styles": {
+			"styles": [
+				"styles/theme.css"
+			],
+			"position": "top",
+			"targets": [
+				"desktop",
+				"mobile"
+			]
+		}
+	},
+	"ResourceFileModulePaths": {
+		"localBasePath": "modules",
+		"remoteExtPath": "MW_EXT_InfoBox/modules"
+	},
+	"manifest_version": 2
+}

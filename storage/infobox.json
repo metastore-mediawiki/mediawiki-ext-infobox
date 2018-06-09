@@ -1,0 +1,290 @@
+{
+	"infobox": {
+		"app": {
+			"icon": "fas fa-microchip",
+			"property": "SoftwareApplication",
+			"field": {
+				"author": {
+					"property": "author"
+				},
+				"developer": {
+					"property": "creator"
+				},
+				"release-date": {
+					"property": "datePublished"
+				},
+				"language": {
+					"property": "inLanguage"
+				},
+				"programming-language": {
+					"property": ""
+				},
+				"operating-system": {
+					"property": "operatingSystem"
+				},
+				"url": {
+					"property": "url"
+				},
+				"status": {
+					"property": ""
+				},
+				"platform": {
+					"property": ""
+				},
+				"size": {
+					"property": "fileSize"
+				},
+				"license": {
+					"property": "license"
+				},
+				"version": {
+					"property": "softwareVersion"
+				},
+				"category": {
+					"property": "applicationCategory"
+				}
+			}
+		},
+		"book": {
+			"icon": "fas fa-book",
+			"property": "Book",
+			"field": {
+				"author": {
+					"property": "author"
+				},
+				"congress": {
+					"property": ""
+				},
+				"country": {
+					"property": ""
+				},
+				"cover-artist": {
+					"property": ""
+				},
+				"release-date": {
+					"property": "datePublished"
+				},
+				"dewey": {
+					"property": ""
+				},
+				"genre": {
+					"property": "genre"
+				},
+				"illustrator": {
+					"property": "illustrator"
+				},
+				"isbn": {
+					"property": "isbn"
+				},
+				"language": {
+					"property": "inLanguage"
+				},
+				"format": {
+					"property": "bookFormat"
+				},
+				"oclc": {
+					"property": ""
+				},
+				"pages": {
+					"property": "numberOfPages"
+				},
+				"publisher": {
+					"property": "publisher"
+				},
+				"series": {
+					"property": ""
+				},
+				"translator": {
+					"property": "translator"
+				},
+				"price": {
+					"property": "Price"
+				},
+				"license": {
+					"property": "license"
+				},
+				"url": {
+					"property": "url"
+				}
+			}
+		},
+		"movie": {
+			"icon": "fas fa-film",
+			"property": "Movie",
+			"field": {
+				"budget": {
+					"property": ""
+				},
+				"cinematography": {
+					"property": ""
+				},
+				"country": {
+					"property": ""
+				},
+				"date-release": {
+					"property": ""
+				},
+				"director": {
+					"property": ""
+				},
+				"distributor": {
+					"property": ""
+				},
+				"genre": {
+					"property": ""
+				},
+				"gross": {
+					"property": ""
+				},
+				"imdb": {
+					"property": ""
+				},
+				"music": {
+					"property": ""
+				},
+				"producer": {
+					"property": ""
+				},
+				"runtime": {
+					"property": ""
+				},
+				"starring": {
+					"property": ""
+				},
+				"writer": {
+					"property": ""
+				}
+			}
+		},
+		"extension": {
+			"icon": "fas fa-cube",
+			"property": "",
+			"field": {
+				"changelog": {
+					"property": ""
+				},
+				"compatibility": {
+					"property": ""
+				},
+				"update-date": {
+					"property": ""
+				},
+				"developer": {
+					"property": ""
+				},
+				"download": {
+					"property": ""
+				},
+				"example": {
+					"property": ""
+				},
+				"issue": {
+					"property": ""
+				},
+				"language": {
+					"property": ""
+				},
+				"license": {
+					"property": ""
+				},
+				"readme": {
+					"property": ""
+				},
+				"require": {
+					"property": ""
+				},
+				"status": {
+					"property": ""
+				},
+				"url": {
+					"property": ""
+				},
+				"version": {
+					"property": ""
+				}
+			}
+		},
+		"person": {
+			"icon": "fas fa-user",
+			"property": "Person",
+			"field": {
+				"birthday": {
+					"property": "birthDate"
+				},
+				"language": {
+					"property": ""
+				},
+				"name": {
+					"property": "name"
+				},
+				"nick": {
+					"property": "sameAs"
+				},
+				"signature": {
+					"property": ""
+				},
+				"slogan": {
+					"property": ""
+				},
+				"species": {
+					"property": ""
+				},
+				"url": {
+					"property": "url"
+				},
+				"email": {
+					"property": "email"
+				},
+				"gender": {
+					"property": "gender"
+				},
+				"nationality": {
+					"property": "nationality"
+				},
+				"phone": {
+					"property": "telephone"
+				},
+				"job": {
+					"property": "jobTitle"
+				},
+				"death-date": {
+					"property": "deathDate"
+				},
+				"location": {
+					"property": "homeLocation"
+				},
+				"height": {
+					"property": "height"
+				},
+				"weight": {
+					"property": "weight"
+				}
+			}
+		},
+		"website": {
+			"icon": "fas fa-globe",
+			"property": "",
+			"field": {
+				"audience": {
+					"property": ""
+				},
+				"creator": {
+					"property": ""
+				},
+				"launch-date": {
+					"property": ""
+				},
+				"owner": {
+					"property": ""
+				},
+				"slogan": {
+					"property": ""
+				},
+				"url": {
+					"property": ""
+				}
+			}
+		}
+	}
+}
+

@@ -1,0 +1,66 @@
+.mw-ext-infobox {
+	background-color: #fff;
+	border-left: 3px solid hsl(0, 0%, 96%);
+	font-size: .9em;
+	float: right;
+	clear: right;
+	overflow: hidden;
+	margin: 0 0 1em 1em;
+	padding-left: .5em;
+	width: 30em;
+	.infobox-grid {
+		display: grid;
+		grid-gap: .5em;
+		grid-template-columns: repeat(auto-fit, minmax(10em, 1fr));
+	}
+	.infobox-item {
+		padding: .5em;
+		border-bottom: 1px solid hsl(0, 0%, 96%);
+		.item-title {
+			font-weight: bold;
+		}
+		&:first-child {
+			padding-top: 0;
+		}
+		&:last-child {
+			border-bottom: none;
+			padding-bottom: 0;
+		}
+		&-image {
+			padding-top: 1em;
+			padding-bottom: 1em;
+			text-align: center;
+			img {
+				width: 100%;
+				height: auto;
+			}
+			div {
+				&:first-child {
+					display: grid;
+					align-items: center;
+					justify-items: center;
+					i {
+						color: hsl(0, 0%, 96%);
+						font-size: 15em;
+					}
+				}
+				&:nth-child(2) {
+					font-size: .9em;
+					margin-top: 1em;
+					color: hsl(0, 0%, 48%);
+				}
+			}
+		}
+		&-title {
+			div {
+				&:first-child {
+					font-size: 1.4em;
+				}
+				&:last-child {
+					font-size: 1em;
+					color: hsl(0, 0%, 71%);
+				}
+			}
+		}
+	}
+}
