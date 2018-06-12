@@ -279,17 +279,12 @@ class MW_EXT_InfoBox {
 		$results = [];
 
 		foreach ( $options as $option ) {
-			$pair = explode( '=', $option, 2 );
+			$pair = explode( '=', $frame->expand( $option ), 2 );
 
 			if ( count( $pair ) === 2 ) {
-				$name             = trim( $pair[0] );
-				$value            = trim( $pair[1] );
+				$name             = self::clearData( $pair[0] );
+				$value            = self::clearData( $pair[1] );
 				$results[ $name ] = $value;
-			}
-
-			if ( count( $pair ) === 1 ) {
-				$name             = trim( $pair[0] );
-				$results[ $name ] = true;
 			}
 		}
 

@@ -45,7 +45,7 @@
 				}
 			}
 		},
-		"book": {
+		"story": {
 			"icon": "fas fa-book",
 			"property": "Book",
 			"field": {
