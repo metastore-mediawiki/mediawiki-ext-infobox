@@ -286,6 +286,11 @@ class MW_EXT_InfoBox {
 				$value            = self::clearData( $pair[1] );
 				$results[ $name ] = $value;
 			}
+
+			if ( count( $pair ) === 1 ) {
+				$name             = self::clearData( $pair[0] );
+				$results[ $name ] = true;
+			}
 		}
 
 		return $results;
