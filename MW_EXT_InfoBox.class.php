@@ -196,7 +196,7 @@ class MW_EXT_InfoBox {
 	 * @return null|string
 	 * -------------------------------------------------------------------------------------------------------------- */
 
-	public static function onRenderTag( Parser $parser, PPFrame $frame, array $args ) {
+	public static function onRenderTag( Parser $parser, PPFrame $frame, $args = [] ) {
 		// Get options parser.
 		$getOptions = self::extractOptions( $args, $frame );
 
@@ -278,7 +278,7 @@ class MW_EXT_InfoBox {
 	 * @return array
 	 * -------------------------------------------------------------------------------------------------------------- */
 
-	private static function extractOptions( array $options, PPFrame $frame ) {
+	private static function extractOptions( $options = [], PPFrame $frame ) {
 		$results = [];
 
 		foreach ( $options as $option ) {
