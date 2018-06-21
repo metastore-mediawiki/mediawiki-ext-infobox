@@ -1,9 +1,15 @@
 <?php
 
+namespace MediaWiki\Extension\MW_EXT_InfoBox;
+
+use OutputPage;
+use Parser;
+use PPFrame;
+use Skin;
+
 /**
  * Class MW_EXT_InfoBox
  * ------------------------------------------------------------------------------------------------------------------ */
-
 class MW_EXT_InfoBox {
 
 	/**
@@ -174,7 +180,7 @@ class MW_EXT_InfoBox {
 	 * @param Parser $parser
 	 *
 	 * @return bool
-	 * @throws MWException
+	 * @throws \MWException
 	 * -------------------------------------------------------------------------------------------------------------- */
 
 	public static function onParserFirstCallInit( Parser $parser ) {
@@ -190,7 +196,7 @@ class MW_EXT_InfoBox {
 	 * @param PPFrame $frame
 	 * @param array $args
 	 *
-	 * @return bool|string
+	 * @return null|string
 	 * -------------------------------------------------------------------------------------------------------------- */
 
 	public static function onRenderTag( Parser $parser, PPFrame $frame, array $args ) {
@@ -219,7 +225,7 @@ class MW_EXT_InfoBox {
 		if ( ! self::getType( $outBoxType ) ) {
 			$parser->addTrackingCategory( 'mw-ext-infobox-error-category' );
 
-			return false;
+			return null;
 		}
 
 		// Check infobox property.
@@ -306,7 +312,7 @@ class MW_EXT_InfoBox {
 	 * -------------------------------------------------------------------------------------------------------------- */
 
 	public static function onBeforePageDisplay( OutputPage $out, Skin $skin ) {
-		$out->addModuleStyles( array( 'ext.mw.infobox.styles' ) );
+		$out->addModuleStyles( [ 'ext.mw.infobox.styles' ] );
 
 		return true;
 	}
