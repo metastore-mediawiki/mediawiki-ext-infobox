@@ -2,10 +2,7 @@
 
 namespace MediaWiki\Extension\MW_EXT_InfoBox;
 
-use OutputPage;
-use Parser;
-use PPFrame;
-use Skin;
+use OutputPage, Parser, PPFrame, Skin;
 
 /**
  * Class MW_EXT_InfoBox
