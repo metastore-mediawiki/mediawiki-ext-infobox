@@ -1,6 +1,6 @@
 .mw-ext-infobox {
 	background-color: #fff;
-	border-left: 3px solid hsl(0, 0%, 96%);
+	border-left: .3em solid hsl(0, 0%, 96%);
 	font-size: .9em;
 	float: right;
 	clear: right;
@@ -15,7 +15,7 @@
 	}
 	.infobox-item {
 		padding: .5em;
-		border-bottom: 1px solid hsl(0, 0%, 96%);
+		border-bottom: .1em solid hsl(0, 0%, 96%);
 		.item-title {
 			font-weight: bold;
 		}

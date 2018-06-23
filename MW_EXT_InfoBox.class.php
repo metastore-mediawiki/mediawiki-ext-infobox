@@ -3,53 +3,12 @@
 namespace MediaWiki\Extension\MW_EXT_InfoBox;
 
 use OutputPage, Parser, PPFrame, Skin;
+use MediaWiki\Extension\MW_EXT_Core\MW_EXT_Core;
 
 /**
  * Class MW_EXT_InfoBox
  * ------------------------------------------------------------------------------------------------------------------ */
 class MW_EXT_InfoBox {
-
-	/**
-	 * Clear DATA (escape html).
-	 *
-	 * @param $string
-	 *
-	 * @return string
-	 * -------------------------------------------------------------------------------------------------------------- */
-
-	private static function clearData( $string ) {
-		$outString = htmlspecialchars( trim( $string ), ENT_QUOTES );
-
-		return $outString;
-	}
-
-	/**
-	 * Convert DATA (replace space & lower case).
-	 *
-	 * @param $string
-	 *
-	 * @return string
-	 * -------------------------------------------------------------------------------------------------------------- */
-
-	private static function convertData( $string ) {
-		$outString = mb_strtolower( str_replace( ' ', '-', $string ), 'UTF-8' );
-
-		return $outString;
-	}
-
-	/**
-	 * Wiki Framework message.
-	 *
-	 * @param $string
-	 *
-	 * @return string
-	 * -------------------------------------------------------------------------------------------------------------- */
-
-	private static function getMsgText( $string ) {
-		$outString = wfMessage( 'mw-ext-infobox-' . $string )->inContentLanguage()->text();
-
-		return $outString;
-	}
 
 	/**
 	 * Get JSON data.
@@ -198,25 +157,25 @@ class MW_EXT_InfoBox {
 
 	public static function onRenderTag( Parser $parser, PPFrame $frame, $args = [] ) {
 		// Get options parser.
-		$getOptions = self::extractOptions( $args, $frame );
+		$getOption = MW_EXT_Core::extractOptions( $args, $frame );
 
 		// Argument: type.
-		$getBoxType = self::clearData( $getOptions['type'] ?? '' ?: '' );
-		$outBoxType = empty( $getBoxType ) ? '' : self::convertData( $getBoxType );
+		$getBoxType = MW_EXT_Core::outClear( $getOption['type'] ?? '' ?: '' );
+		$outBoxType = empty( $getBoxType ) ? '' : MW_EXT_Core::outConvert( $getBoxType );
 
 		// Argument: title.
-		$getItemTitle = self::clearData( $getOptions['title'] ?? '' ?: '' );
-		$outItemTitle = empty( $getItemTitle ) ? self::getMsgText( 'block-title' ) : $getItemTitle;
+		$getItemTitle = MW_EXT_Core::outClear( $getOption['title'] ?? '' ?: '' );
+		$outItemTitle = empty( $getItemTitle ) ? MW_EXT_Core::getMessageText( 'infobox', 'block-title' ) : $getItemTitle;
 
 		// Argument: image.
-		$getItemImage = self::clearData( $getOptions['image'] ?? '' ?: '' );
+		$getItemImage = MW_EXT_Core::outClear( $getOption['image'] ?? '' ?: '' );
 
 		// Argument: caption.
-		$getItemCaption = self::clearData( $getOptions['caption'] ?? '' ?: '' );
+		$getItemCaption = MW_EXT_Core::outClear( $getOption['caption'] ?? '' ?: '' );
 		$outItemCaption = empty( $getItemCaption ) ? '' : '<div>' . $getItemCaption . '</div>';
 
 		// Out item type.
-		$outItemType = empty( $getBoxType ) ? '' : self::convertData( $getBoxType );
+		$outItemType = empty( $getBoxType ) ? '' : MW_EXT_Core::outConvert( $getBoxType );
 
 		// Check infobox type, set error category.
 		if ( ! self::getType( $outBoxType ) ) {
@@ -237,13 +196,13 @@ class MW_EXT_InfoBox {
 
 		// Out HTML.
 		$outHTML = '<div class="mw-ext-infobox mw-ext-infobox-' . $outBoxType . ' navigation-not-searchable" itemscope itemtype="http://schema.org/' . $typeProperty . '">';
-		$outHTML .= '<div class="infobox-item infobox-item-title"><div>' . $outItemTitle . '</div><div>' . self::getMsgText( $outItemType ) . '</div></div>';
+		$outHTML .= '<div class="infobox-item infobox-item-title"><div>' . $outItemTitle . '</div><div>' . MW_EXT_Core::getMessageText( 'infobox', $outItemType ) . '</div></div>';
 		$outHTML .= '<div class="infobox-item infobox-item-image"><div>' . $outItemImage . '</div>' . $outItemCaption . '</div>';
 
-		foreach ( $getOptions as $key => $value ) {
-			$key   = self::convertData( $key );
+		foreach ( $getOption as $key => $value ) {
+			$key   = MW_EXT_Core::outConvert( $key );
 			$field = self::getField( $outBoxType, $key );
-			$title = $outBoxType . '-' . self::convertData( $key );
+			$title = $outBoxType . '-' . MW_EXT_Core::outConvert( $key );
 
 			if ( self::getFieldProperty( $outBoxType, $key ) ) {
 				$fieldProperty = self::getFieldProperty( $outBoxType, $key );
@@ -253,8 +212,8 @@ class MW_EXT_InfoBox {
 
 			if ( $field && ! empty( $value ) ) {
 				$outHTML .= '<div class="infobox-grid infobox-item infobox-item-' . $title . '">';
-				$outHTML .= '<div class="item-title">' . self::getMsgText( $title ) . '</div>';
-				$outHTML .= '<div class="item-value" itemprop="' . $fieldProperty . '">' . self::clearData( $value ) . '</div>';
+				$outHTML .= '<div class="item-title">' . MW_EXT_Core::getMessageText( 'infobox', $title ) . '</div>';
+				$outHTML .= '<div class="item-value" itemprop="' . $fieldProperty . '">' . MW_EXT_Core::outClear( $value ) . '</div>';
 				$outHTML .= '</div>';
 			}
 		}
@@ -265,38 +224,6 @@ class MW_EXT_InfoBox {
 		$outParser = $outHTML;
 
 		return $outParser;
-	}
-
-	/**
-	 * Converts an array of values in form [0] => "name=value" into a real
-	 * associative array in form [name] => value. If no = is provided,
-	 * true is assumed like this: [name] => true.
-	 *
-	 * @param array $options
-	 * @param PPFrame $frame
-	 *
-	 * @return array
-	 * -------------------------------------------------------------------------------------------------------------- */
-
-	private static function extractOptions( $options = [], PPFrame $frame ) {
-		$results = [];
-
-		foreach ( $options as $option ) {
-			$pair = explode( '=', $frame->expand( $option ), 2 );
-
-			if ( count( $pair ) === 2 ) {
-				$name             = self::clearData( $pair[0] );
-				$value            = self::clearData( $pair[1] );
-				$results[ $name ] = $value;
-			}
-
-			if ( count( $pair ) === 1 ) {
-				$name             = self::clearData( $pair[0] );
-				$results[ $name ] = true;
-			}
-		}
-
-		return $results;
 	}
 
 	/**
