@@ -11,7 +11,10 @@
 	"license-name": "[https://www.gnu.org/licenses/gpl-3.0.txt GPL-3.0]",
 	"type": "parserhook",
 	"require": {
-		"MediaWiki": ">= 1.31.0"
+		"MediaWiki": ">= 1.31.0",
+		"extensions": {
+			"MW_EXT_Core": "*"
+		}
 	},
 	"AutoloadClasses": {
 		"MediaWiki\\Extension\\MW_EXT_InfoBox\\MW_EXT_InfoBox": "MW_EXT_InfoBox.class.php"
