@@ -161,7 +161,7 @@ class MW_EXT_InfoBox {
 
 		// Argument: type.
 		$getBoxType = MW_EXT_Core::outClear( $getOption['type'] ?? '' ?: '' );
-		$outBoxType = empty( $getBoxType ) ? '' : MW_EXT_Core::outConvert( $getBoxType );
+		$outBoxType = empty( $getBoxType ) ? '' : MW_EXT_Core::outNormalize( $getBoxType );
 
 		// Argument: title.
 		$getItemTitle = MW_EXT_Core::outClear( $getOption['title'] ?? '' ?: '' );
@@ -175,7 +175,7 @@ class MW_EXT_InfoBox {
 		$outItemCaption = empty( $getItemCaption ) ? '' : '<div>' . $getItemCaption . '</div>';
 
 		// Out item type.
-		$outItemType = empty( $getBoxType ) ? '' : MW_EXT_Core::outConvert( $getBoxType );
+		$outItemType = empty( $getBoxType ) ? '' : MW_EXT_Core::outNormalize( $getBoxType );
 
 		// Check infobox type, set error category.
 		if ( ! self::getType( $outBoxType ) ) {
@@ -200,9 +200,9 @@ class MW_EXT_InfoBox {
 		$outHTML .= '<div class="infobox-item infobox-item-image"><div>' . $outItemImage . '</div>' . $outItemCaption . '</div>';
 
 		foreach ( $getOption as $key => $value ) {
-			$key   = MW_EXT_Core::outConvert( $key );
+			$key   = MW_EXT_Core::outNormalize( $key );
 			$field = self::getField( $outBoxType, $key );
-			$title = $outBoxType . '-' . MW_EXT_Core::outConvert( $key );
+			$title = $outBoxType . '-' . MW_EXT_Core::outNormalize( $key );
 
 			if ( self::getFieldProperty( $outBoxType, $key ) ) {
 				$fieldProperty = self::getFieldProperty( $outBoxType, $key );
