@@ -7,21 +7,8 @@ use MediaWiki\Extension\MW_EXT_Core\MW_EXT_Core;
 
 /**
  * Class MW_EXT_InfoBox
- * ------------------------------------------------------------------------------------------------------------------ */
+ */
 class MW_EXT_InfoBox {
-
-	/**
-	 * Get JSON data.
-	 *
-	 * @return mixed
-	 * -------------------------------------------------------------------------------------------------------------- */
-
-	private static function getData() {
-		$getData = file_get_contents( __DIR__ . '/storage/infobox.json' );
-		$outData = json_decode( $getData, true );
-
-		return $outData;
-	}
 
 	/**
 	 * Get type.
@@ -29,10 +16,9 @@ class MW_EXT_InfoBox {
 	 * @param $type
 	 *
 	 * @return mixed
-	 * -------------------------------------------------------------------------------------------------------------- */
-
+	 */
 	private static function getType( $type ) {
-		$getData = self::getData();
+		$getData = MW_EXT_Core::getJSON( __DIR__ . '/storage/infobox.json' );
 
 		if ( ! isset( $getData['infobox'][ $type ] ) ) {
 			return false;
@@ -50,8 +36,7 @@ class MW_EXT_InfoBox {
 	 * @param $type
 	 *
 	 * @return mixed
-	 * -------------------------------------------------------------------------------------------------------------- */
-
+	 */
 	private static function getTypeIcon( $type ) {
 		$type = self::getType( $type ) ? self::getType( $type ) : '';
 
@@ -71,8 +56,7 @@ class MW_EXT_InfoBox {
 	 * @param $type
 	 *
 	 * @return mixed
-	 * -------------------------------------------------------------------------------------------------------------- */
-
+	 */
 	private static function getTypeProperty( $type ) {
 		$type = self::getType( $type ) ? self::getType( $type ) : '';
 
@@ -93,8 +77,7 @@ class MW_EXT_InfoBox {
 	 * @param $field
 	 *
 	 * @return mixed
-	 * -------------------------------------------------------------------------------------------------------------- */
-
+	 */
 	private static function getField( $type, $field ) {
 		$type = self::getType( $type ) ? self::getType( $type ) : '';
 
@@ -115,8 +98,7 @@ class MW_EXT_InfoBox {
 	 * @param $field
 	 *
 	 * @return mixed
-	 * -------------------------------------------------------------------------------------------------------------- */
-
+	 */
 	private static function getFieldProperty( $type, $field ) {
 		$field = self::getField( $type, $field ) ? self::getField( $type, $field ) : '';
 
@@ -137,8 +119,7 @@ class MW_EXT_InfoBox {
 	 *
 	 * @return bool
 	 * @throws \MWException
-	 * -------------------------------------------------------------------------------------------------------------- */
-
+	 */
 	public static function onParserFirstCallInit( Parser $parser ) {
 		$parser->setFunctionHook( 'infobox', [ __CLASS__, 'onRenderTag' ], Parser::SFH_OBJECT_ARGS );
 
@@ -153,8 +134,7 @@ class MW_EXT_InfoBox {
 	 * @param array $args
 	 *
 	 * @return null|string
-	 * -------------------------------------------------------------------------------------------------------------- */
-
+	 */
 	public static function onRenderTag( Parser $parser, PPFrame $frame, $args = [] ) {
 		// Get options parser.
 		$getOption = MW_EXT_Core::extractOptions( $args, $frame );
@@ -233,8 +213,7 @@ class MW_EXT_InfoBox {
 	 * @param Skin $skin
 	 *
 	 * @return bool
-	 * -------------------------------------------------------------------------------------------------------------- */
-
+	 */
 	public static function onBeforePageDisplay( OutputPage $out, Skin $skin ) {
 		$out->addModuleStyles( [ 'ext.mw.infobox.styles' ] );
 
