@@ -1,5 +1,5 @@
 {
-	"name": "metastore-mediawiki/mediawiki-ext-infobox",
+	"name": "metastore/mediawiki-ext-infobox",
 	"type": "mediawiki-extension",
 	"description": "",
 	"license": "GPL-3.0-or-later",
@@ -26,7 +26,7 @@
 	"require": {
 		"php": ">=7.2",
 		"composer/installers": "~1.0",
-		"metastore-mediawiki/mediawiki-ext-core": "*"
+		"metastore/mediawiki-ext-core": "*"
 	},
 	"autoload": {
 		"classmap": [
