@@ -25,11 +25,14 @@
 	},
 	"require": {
 		"php": ">=7.2",
-		"composer/installers": "1.*,>=1.0.1"
+		"composer/installers": "~1.0"
 	},
 	"autoload": {
 		"classmap": [
 			"MW_EXT_InfoBox.class.php"
 		]
+	},
+	"extra": {
+		"installer-name": "MW_EXT_InfoBox"
 	}
 }
