@@ -3,7 +3,7 @@
 	"type": "mediawiki-extension",
 	"description": "",
 	"license": "GPL-3.0-or-later",
-	"homepage": "https://metastore.pro/",
+	"homepage": "https://metastore.pro",
 	"keywords": [
 		"mediawiki",
 		"infobox"
@@ -12,7 +12,7 @@
 		{
 			"name": "Kitsune Solar",
 			"email": "kitsune.solar@gmail.com",
-			"homepage": "https://kitsune.solar/",
+			"homepage": "https://kitsune.solar",
 			"role": "Developer"
 		}
 	],
