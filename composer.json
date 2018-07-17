@@ -24,7 +24,6 @@
 		"source": "https://gitlab.com/metastore/mediawiki/mediawiki-ext-infobox"
 	},
 	"require": {
-		"php": ">=7.2",
 		"composer/installers": "~1.0",
 		"metastore/mediawiki-ext-core": "*"
 	},
