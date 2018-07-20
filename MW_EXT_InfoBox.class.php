@@ -3,7 +3,7 @@
 namespace MediaWiki\Extension\MW_EXT_InfoBox;
 
 use OutputPage, Parser, PPFrame, Skin;
-use MediaWiki\Extension\MW_EXT_Core\MW_EXT_Core;
+use MediaWiki\Extension\MW_EXT_Kernel\MW_EXT_Kernel;
 
 /**
  * Class MW_EXT_InfoBox
@@ -18,7 +18,7 @@ class MW_EXT_InfoBox {
 	 * @return mixed
 	 */
 	private static function getType( $type ) {
-		$getData = MW_EXT_Core::getJSON( __DIR__ . '/storage/infobox.json' );
+		$getData = MW_EXT_Kernel::getJSON( __DIR__ . '/storage/infobox.json' );
 
 		if ( ! isset( $getData['infobox'][ $type ] ) ) {
 			return false;
@@ -137,25 +137,25 @@ class MW_EXT_InfoBox {
 	 */
 	public static function onRenderTag( Parser $parser, PPFrame $frame, $args = [] ) {
 		// Get options parser.
-		$getOption = MW_EXT_Core::extractOptions( $args, $frame );
+		$getOption = MW_EXT_Kernel::extractOptions( $args, $frame );
 
 		// Argument: type.
-		$getBoxType = MW_EXT_Core::outClear( $getOption['type'] ?? '' ?: '' );
-		$outBoxType = empty( $getBoxType ) ? '' : MW_EXT_Core::outNormalize( $getBoxType );
+		$getBoxType = MW_EXT_Kernel::outClear( $getOption['type'] ?? '' ?: '' );
+		$outBoxType = empty( $getBoxType ) ? '' : MW_EXT_Kernel::outNormalize( $getBoxType );
 
 		// Argument: title.
-		$getItemTitle = MW_EXT_Core::outClear( $getOption['title'] ?? '' ?: '' );
-		$outItemTitle = empty( $getItemTitle ) ? MW_EXT_Core::getMessageText( 'infobox', 'block-title' ) : $getItemTitle;
+		$getItemTitle = MW_EXT_Kernel::outClear( $getOption['title'] ?? '' ?: '' );
+		$outItemTitle = empty( $getItemTitle ) ? MW_EXT_Kernel::getMessageText( 'infobox', 'block-title' ) : $getItemTitle;
 
 		// Argument: image.
-		$getItemImage = MW_EXT_Core::outClear( $getOption['image'] ?? '' ?: '' );
+		$getItemImage = MW_EXT_Kernel::outClear( $getOption['image'] ?? '' ?: '' );
 
 		// Argument: caption.
-		$getItemCaption = MW_EXT_Core::outClear( $getOption['caption'] ?? '' ?: '' );
+		$getItemCaption = MW_EXT_Kernel::outClear( $getOption['caption'] ?? '' ?: '' );
 		$outItemCaption = empty( $getItemCaption ) ? '' : '<div>' . $getItemCaption . '</div>';
 
 		// Out item type.
-		$outItemType = empty( $getBoxType ) ? '' : MW_EXT_Core::outNormalize( $getBoxType );
+		$outItemType = empty( $getBoxType ) ? '' : MW_EXT_Kernel::outNormalize( $getBoxType );
 
 		// Check infobox type, set error category.
 		if ( ! self::getType( $outBoxType ) ) {
@@ -176,13 +176,13 @@ class MW_EXT_InfoBox {
 
 		// Out HTML.
 		$outHTML = '<div class="mw-ext-infobox mw-ext-infobox-' . $outBoxType . ' navigation-not-searchable" itemscope itemtype="http://schema.org/' . $typeProperty . '">';
-		$outHTML .= '<div class="infobox-item infobox-item-title"><div>' . $outItemTitle . '</div><div>' . MW_EXT_Core::getMessageText( 'infobox', $outItemType ) . '</div></div>';
+		$outHTML .= '<div class="infobox-item infobox-item-title"><div>' . $outItemTitle . '</div><div>' . MW_EXT_Kernel::getMessageText( 'infobox', $outItemType ) . '</div></div>';
 		$outHTML .= '<div class="infobox-item infobox-item-image"><div>' . $outItemImage . '</div>' . $outItemCaption . '</div>';
 
 		foreach ( $getOption as $key => $value ) {
-			$key   = MW_EXT_Core::outNormalize( $key );
+			$key   = MW_EXT_Kernel::outNormalize( $key );
 			$field = self::getField( $outBoxType, $key );
-			$title = $outBoxType . '-' . MW_EXT_Core::outNormalize( $key );
+			$title = $outBoxType . '-' . MW_EXT_Kernel::outNormalize( $key );
 
 			if ( self::getFieldProperty( $outBoxType, $key ) ) {
 				$fieldProperty = self::getFieldProperty( $outBoxType, $key );
@@ -192,8 +192,8 @@ class MW_EXT_InfoBox {
 
 			if ( $field && ! empty( $value ) ) {
 				$outHTML .= '<div class="infobox-grid infobox-item infobox-item-' . $title . '">';
-				$outHTML .= '<div class="item-title">' . MW_EXT_Core::getMessageText( 'infobox', $title ) . '</div>';
-				$outHTML .= '<div class="item-value" itemprop="' . $fieldProperty . '">' . MW_EXT_Core::outClear( $value ) . '</div>';
+				$outHTML .= '<div class="item-title">' . MW_EXT_Kernel::getMessageText( 'infobox', $title ) . '</div>';
+				$outHTML .= '<div class="item-value" itemprop="' . $fieldProperty . '">' . MW_EXT_Kernel::outClear( $value ) . '</div>';
 				$outHTML .= '</div>';
 			}
 		}
