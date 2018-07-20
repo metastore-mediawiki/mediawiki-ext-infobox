@@ -5,6 +5,8 @@
 	"license": "GPL-3.0-or-later",
 	"homepage": "https://metastore.pro",
 	"keywords": [
+		"metadata",
+		"metastore",
 		"mediawiki",
 		"infobox"
 	],
@@ -31,6 +33,10 @@
 		"classmap": [
 			"MW_EXT_InfoBox.class.php"
 		]
+	},
+	"config": {
+		"optimize-autoloader": true,
+		"prepend-autoloader": false
 	},
 	"extra": {
 		"installer-name": "MW_EXT_InfoBox"

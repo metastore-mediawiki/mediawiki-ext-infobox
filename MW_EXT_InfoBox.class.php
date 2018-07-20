@@ -1,9 +1,8 @@
 <?php
 
-namespace MediaWiki\Extension\MW_EXT_InfoBox;
+namespace MediaWiki\Extension\METADATA;
 
 use OutputPage, Parser, PPFrame, Skin;
-use MediaWiki\Extension\MW_EXT_Kernel\MW_EXT_Kernel;
 
 /**
  * Class MW_EXT_InfoBox
