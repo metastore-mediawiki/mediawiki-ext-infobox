@@ -1,6 +1,6 @@
 <?php
 
-namespace MediaWiki\Extension\METADATA;
+namespace MediaWiki\Extension\MetaStore;
 
 use OutputPage, Parser, PPFrame, Skin;
 
@@ -14,19 +14,13 @@ class MW_EXT_InfoBox {
 	 *
 	 * @param $type
 	 *
-	 * @return mixed
+	 * @return array
 	 */
 	private static function getType( $type ) {
-		$getData = MW_EXT_Kernel::getJSON( __DIR__ . '/storage/infobox.json' );
+		$get = MW_EXT_Kernel::getJSON( __DIR__ . '/storage/infobox.json' );
+		$out = $get['infobox'][ $type ] ?? [] ?: [];
 
-		if ( ! isset( $getData['infobox'][ $type ] ) ) {
-			return false;
-		}
-
-		$getType = $getData['infobox'][ $type ];
-		$outType = $getType;
-
-		return $outType;
+		return $out;
 	}
 
 	/**
@@ -34,19 +28,13 @@ class MW_EXT_InfoBox {
 	 *
 	 * @param $type
 	 *
-	 * @return mixed
+	 * @return mixed|string
 	 */
 	private static function getTypeIcon( $type ) {
 		$type = self::getType( $type ) ? self::getType( $type ) : '';
+		$out  = $type['icon'] ?? '' ?: '';
 
-		if ( ! isset( $type['icon'] ) ) {
-			return false;
-		}
-
-		$getIcon = $type['icon'];
-		$outIcon = $getIcon;
-
-		return $outIcon;
+		return $out;
 	}
 
 	/**
@@ -54,19 +42,13 @@ class MW_EXT_InfoBox {
 	 *
 	 * @param $type
 	 *
-	 * @return mixed
+	 * @return mixed|string
 	 */
 	private static function getTypeProperty( $type ) {
 		$type = self::getType( $type ) ? self::getType( $type ) : '';
+		$out  = $type['property'] ?? '' ?: '';
 
-		if ( ! isset( $type['property'] ) ) {
-			return false;
-		}
-
-		$getProperty = $type['property'];
-		$outProperty = $getProperty;
-
-		return $outProperty;
+		return $out;
 	}
 
 	/**
@@ -75,19 +57,13 @@ class MW_EXT_InfoBox {
 	 * @param $type
 	 * @param $field
 	 *
-	 * @return mixed
+	 * @return array
 	 */
 	private static function getField( $type, $field ) {
 		$type = self::getType( $type ) ? self::getType( $type ) : '';
+		$out  = $type['field'][ $field ] ?? [] ?: [];
 
-		if ( ! isset( $type['field'][ $field ] ) ) {
-			return false;
-		}
-
-		$getField = $type['field'][ $field ];
-		$outField = $getField;
-
-		return $outField;
+		return $out;
 	}
 
 	/**
@@ -100,15 +76,9 @@ class MW_EXT_InfoBox {
 	 */
 	private static function getFieldProperty( $type, $field ) {
 		$field = self::getField( $type, $field ) ? self::getField( $type, $field ) : '';
+		$out   = $field['property'] ?? '' ?: '';
 
-		if ( ! isset( $field['property'] ) ) {
-			return false;
-		}
-
-		$getProperty = $field['property'];
-		$outProperty = $getProperty;
-
-		return $outProperty;
+		return $out;
 	}
 
 	/**
