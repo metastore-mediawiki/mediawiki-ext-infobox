@@ -3,7 +3,7 @@
 	"type": "mediawiki-extension",
 	"description": "",
 	"license": "GPL-3.0-or-later",
-	"homepage": "https://metastore.pro",
+	"homepage": "https://metastore.pro/",
 	"keywords": [
 		"metadata",
 		"metastore",
@@ -14,15 +14,15 @@
 		{
 			"name": "Kitsune Solar",
 			"email": "kitsune.solar@gmail.com",
-			"homepage": "https://kitsune.solar",
+			"homepage": "https://kitsune.solar/",
 			"role": "Developer"
 		}
 	],
 	"support": {
 		"email": "support@metastore.pro",
 		"issues": "https://gitlab.com/metastore/mediawiki/mediawiki-ext-infobox/issues",
-		"forum": "https://webmasters.community",
-		"wiki": "https://webmasters.wiki",
+		"forum": "https://webmasters.community/",
+		"wiki": "https://webmasters.wiki/",
 		"source": "https://gitlab.com/metastore/mediawiki/mediawiki-ext-infobox"
 	},
 	"require": {
