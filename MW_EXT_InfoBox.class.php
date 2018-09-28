@@ -16,7 +16,7 @@ class MW_EXT_InfoBox {
 	 *
 	 * @return array
 	 */
-	private static function getType( $type ) {
+	private static function getData( $type ) {
 		$get = MW_EXT_Kernel::getJSON( __DIR__ . '/storage/infobox.json' );
 		$out = $get['infobox'][ $type ] ?? [] ?: [];
 
@@ -31,7 +31,7 @@ class MW_EXT_InfoBox {
 	 * @return mixed|string
 	 */
 	private static function getTypeIcon( $type ) {
-		$type = self::getType( $type ) ? self::getType( $type ) : '';
+		$type = self::getData( $type ) ? self::getData( $type ) : '';
 		$out  = $type['icon'] ?? '' ?: '';
 
 		return $out;
@@ -45,7 +45,7 @@ class MW_EXT_InfoBox {
 	 * @return mixed|string
 	 */
 	private static function getTypeProperty( $type ) {
-		$type = self::getType( $type ) ? self::getType( $type ) : '';
+		$type = self::getData( $type ) ? self::getData( $type ) : '';
 		$out  = $type['property'] ?? '' ?: '';
 
 		return $out;
@@ -60,7 +60,7 @@ class MW_EXT_InfoBox {
 	 * @return array
 	 */
 	private static function getField( $type, $field ) {
-		$type = self::getType( $type ) ? self::getType( $type ) : '';
+		$type = self::getData( $type ) ? self::getData( $type ) : '';
 		$out  = $type['field'][ $field ] ?? [] ?: [];
 
 		return $out;
@@ -127,7 +127,7 @@ class MW_EXT_InfoBox {
 		$outItemType = empty( $getBoxType ) ? '' : MW_EXT_Kernel::outNormalize( $getBoxType );
 
 		// Check infobox type, set error category.
-		if ( ! self::getType( $outBoxType ) ) {
+		if ( ! self::getData( $outBoxType ) ) {
 			$parser->addTrackingCategory( 'mw-ext-infobox-error-category' );
 
 			return null;
